@@ -1,14 +1,28 @@
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class TestFormSubmission {
-    public static void main(String[] args) {
+    private BasePage basePage;
+    private FormPage formPage;
+
+    // Setup method to initialize the WebDriver and navigate to the page
+    @BeforeEach
+    public void setUp() {
         // Initialize the BasePage (to setup WebDriver)
-        BasePage basePage = new BasePage();
+        basePage = new BasePage();
 
         // Open the target URL
         basePage.navigateTo("https://yarygintech.com/form.html");
 
         // Initialize the FormPage (pass the driver from BasePage)
-        FormPage formPage = new FormPage(basePage.driver);
+        formPage = new FormPage(basePage.driver);
+    }
 
+    // Test method to submit the form
+    @Test
+    public void testFormSubmission() {
         // Fill out the form
         formPage.enterName("John");
         formPage.enterLastName("Doe");
@@ -18,13 +32,13 @@ public class TestFormSubmission {
         // Submit the form
         formPage.submitForm();
 
-        // Check if the confirmation message is displayed
-        if (formPage.isMessageDisplayed()) {
-            System.out.println("Form submitted successfully, and confirmation message is visible.");
-        } else {
-            System.out.println("Form submission failed or confirmation message not displayed.");
-        }
+        // Assert that the confirmation message is displayed
+        assertTrue(formPage.isMessageDisplayed(), "Form submission failed or confirmation message not displayed.");
+    }
 
+    // Tear down method to close the browser after each test
+    @AfterEach
+    public void tearDown() {
         // Close the browser
         basePage.closeBrowser();
     }

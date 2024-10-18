@@ -3,7 +3,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class FormPage {
-    private WebDriver driver;
+    public WebDriver driver;
 
     // Web elements as instance variables
     private WebElement nameField;
