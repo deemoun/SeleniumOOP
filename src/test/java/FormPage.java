@@ -5,44 +5,53 @@ import org.openqa.selenium.WebElement;
 public class FormPage {
     private WebDriver driver;
 
-    // Constructor that accepts the WebDriver instance
+    // Web elements as instance variables
+    private WebElement nameField;
+    private WebElement lastNameField;
+    private WebElement addressField;
+    private WebElement notesField;
+    private WebElement submitButton;
+    private WebElement messageDiv;
+
+    // Constructor that accepts the WebDriver instance and initializes the elements
     public FormPage(WebDriver driver) {
         this.driver = driver;
+        // Initialize the web elements
+        nameField = driver.findElement(By.id("name"));
+        lastNameField = driver.findElement(By.id("lastName"));
+        addressField = driver.findElement(By.id("address"));
+        notesField = driver.findElement(By.id("notes"));
+        submitButton = driver.findElement(By.xpath("//button[@type='submit']"));
+        messageDiv = driver.findElement(By.id("message"));
     }
 
     // Fill in the Name field
     public void enterName(String name) {
-        WebElement nameField = driver.findElement(By.id("name"));
         nameField.sendKeys(name);
     }
 
     // Fill in the Last Name field
     public void enterLastName(String lastName) {
-        WebElement lastNameField = driver.findElement(By.id("lastName"));
         lastNameField.sendKeys(lastName);
     }
 
     // Fill in the Address field
     public void enterAddress(String address) {
-        WebElement addressField = driver.findElement(By.id("address"));
         addressField.sendKeys(address);
     }
 
     // Fill in the Notes field
     public void enterNotes(String notes) {
-        WebElement notesField = driver.findElement(By.id("notes"));
         notesField.sendKeys(notes);
     }
 
     // Submit the form
     public void submitForm() {
-        WebElement submitButton = driver.findElement(By.xpath("//button[@type='submit']"));
         submitButton.click();
     }
 
     // Check if confirmation message is displayed
     public boolean isMessageDisplayed() {
-        WebElement messageDiv = driver.findElement(By.id("message"));
         return messageDiv.isDisplayed();
     }
 }

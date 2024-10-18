@@ -6,7 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.time.Duration;
 
 public class BasePage {
-    protected WebDriver driver;
+    public WebDriver driver;
 
     // Constructor to initialize WebDriver
     public BasePage() {
